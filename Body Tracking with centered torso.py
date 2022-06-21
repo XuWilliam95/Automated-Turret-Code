@@ -38,7 +38,8 @@ def torso_shoot(torso_x, torso_y, bound_x, bound_y, image, arduino):
         arduino.write(bytes('1', 'utf-8'))
 
 def manual_shoot(arduino):
-    arduino.write(bytes('1', 'utf-8'))
+    if cv2.waitKey(1) == ord(trigger):
+        arduino.write(bytes('1', 'utf-8'))
         
    
 def main():
@@ -53,8 +54,7 @@ def main():
             _, image = cap.read()
             
             # trigger by pressing s
-            if cv2.waitKey(1) == ord('s'):
-                manual_shoot(arduino)
+            manual_shoot(arduino, 's')
 
             # To improve performance, optionally mark the image as not writeable to
             # pass by reference.
