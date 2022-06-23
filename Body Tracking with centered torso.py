@@ -32,8 +32,8 @@ def main():
             if results.pose_landmarks is not None:
                 
                 torso_coords = tf.torso_coords(results)
-                torso_bounds1 = [-0.5, 1.5, -0.5, 1.5] # upper chest
-                torso_bounds2 = [0, 1, 0, 1] # center torso
+                torso_bounds1 = [-0.5, 1.5, -0.5, 1.5] # upper chest (Note: Heavily Biased)
+                torso_bounds2 = [0, 1, 0, 1] # center torso (Note: Unbiased)
                 screen_bounds = [0, win_width, 0, win_height]
                 # Parameters (image, center_coords, radius, color, thickness) # Note: Color is bgr
                 cv2.circle(image, (c1[0], c1[1]), c1[2], (225, 203, 30), 2)
