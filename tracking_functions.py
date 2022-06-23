@@ -37,8 +37,8 @@ def torso_shoot(torso_x, torso_y, bound_x, bound_y, image, arduino):
         # sends a message to the arduino
         arduino.write(bytes('1', 'utf-8'))
 
-def circle_shoot(c1, c2, image, arduino):
-    if overlap(c1, c2):
+def circle_shoot(c1, c2, image, arduino, mode):
+    if overlap(c1, c2, mode):
         # shows fire on screen when target is with the defined tolerance
         cv2.putText(image, "fire", (10,70), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,255), 3)
         # sends a message to the arduino
@@ -59,13 +59,29 @@ def distance(c1: list, c2: list):
 
 # c = [x, y, r] 
 # if the center of the tracking circle is in the target shoot
-def overlap(c1: list, c2: list):
-    return distance(c1, c2) < max(c1[2], c2[2])
+def overlap(c1: list, c2: list, mode: str):
+    # center of the smaller circle is in the larger one
+    if mode == 'center':
+        return distance(c1, c2) < max(c1[2], c2[2])
+    # edges touch
+    elif mode == 'edge':
+        return distance(c1, c2) < (c1[2] + c2[2])
 
-# if there is any overlap at all shoot
-def overlap2(c1: list, c2: list):
-    return distance(c1, c2) < (c1[2] + c2[2])
 
+def torso_coords(results):
+    torso_center_x = ((results.pose_landmarks.landmark[11].x + results.pose_landmarks.landmark[12].x)/2 + 
+                        (results.pose_landmarks.landmark[23].x + results.pose_landmarks.landmark[24].x)/2)/2
+    torso_center_y = ((results.pose_landmarks.landmark[11].y + results.pose_landmarks.landmark[23].y)/2 + 
+                        (results.pose_landmarks.landmark[24].y + results.pose_landmarks.landmark[12].y)/2)/2
+
+    return torso_center_x, torso_center_y
+
+def draw_pose(results, image, mp_drawing, mp_pose, mp_drawing_styles):
+    mp_drawing.draw_landmarks(
+                image,
+                results.pose_landmarks,
+                mp_pose.POSE_CONNECTIONS,
+                landmark_drawing_spec=mp_drawing_styles.get_default_pose_landmarks_style())
 
 # torso_bounds / screen_bounds: [x_lower, x_upper, y_lower, y_upper]
 # torso_coords: [x, y]
