@@ -27,26 +27,18 @@ def main():
             results = pose.process(image)
 
             # Draw the pose annotation on the image.
-            mp_drawing.draw_landmarks(
-                image,
-                results.pose_landmarks,
-                mp_pose.POSE_CONNECTIONS,
-                landmark_drawing_spec=mp_drawing_styles.get_default_pose_landmarks_style())
+            tf.draw_pose(results, image, mp_drawing, mp_pose, mp_drawing_styles)
 
             if results.pose_landmarks is not None:
-                torso_center_x = ((results.pose_landmarks.landmark[11].x + results.pose_landmarks.landmark[12].x)/2 + 
-                                  (results.pose_landmarks.landmark[23].x + results.pose_landmarks.landmark[24].x)/2)/2
-                torso_center_y = ((results.pose_landmarks.landmark[11].y + results.pose_landmarks.landmark[23].y)/2 + 
-                                  (results.pose_landmarks.landmark[24].y + results.pose_landmarks.landmark[12].y)/2)/2
                 
-                torso_coords = [torso_center_x, torso_center_y]
+                torso_coords = tf.torso_coords(results)
                 torso_bounds1 = [-0.5, 1.5, -0.5, 1.5] # upper chest
                 torso_bounds2 = [0, 1, 0, 1] # center torso
                 screen_bounds = [0, win_width, 0, win_height]
                 # Parameters (image, center_coords, radius, color, thickness) # Note: Color is bgr
                 cv2.circle(image, (c1[0], c1[1]), c1[2], (225, 203, 30), 2)
-                c2 = tf.tracking(torso_coords, torso_bounds2, screen_bounds, image)
-                tf.circle_shoot(c1, c2, image, arduino)
+                c2 = tf.tracking(torso_coords, torso_bounds1, screen_bounds, image)
+                tf.circle_shoot(c1, c2, image, arduino, mode='edge')
 
                 # torso_shoot(torso_center_x, torso_center_y, [0.4, 0.6], [0.35, 0.7], image, arduino)
 
