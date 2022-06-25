@@ -4,7 +4,8 @@ import serial.tools.list_ports
 import math
 
 class NoArduino(Exception):
-    pass
+    def __init__(self, *args: object) -> None:
+        super().__init__(*args)
 
 def find_arduino():
     ports = list(serial.tools.list_ports.comports())
