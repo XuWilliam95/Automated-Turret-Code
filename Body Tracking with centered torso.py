@@ -22,7 +22,7 @@ def main():
             image = cv2.flip(image, 1)
 
             # To improve performance, optionally mark the image as not writeable to
-            #dd pass by reference.
+            # dd pass by reference.
             image.flags.writeable = False
             results = pose.process(image)
 
