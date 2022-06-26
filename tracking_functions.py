@@ -44,6 +44,8 @@ def circle_shoot(c1, c2, image, arduino, mode):
         cv2.putText(image, "fire", (10,70), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,255), 3)
         # sends a message to the arduino
         arduino.write(bytes('1', 'utf-8'))
+    else:
+        arduino.write(bytes('0', 'utf-8'))
 
 def manual_shoot(arduino, trigger):
     if cv2.waitKey(1) == ord(trigger):
