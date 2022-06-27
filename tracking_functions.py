@@ -104,13 +104,13 @@ def tracking(torso_coords: list, torso_bounds: list, screen_bounds: list, image,
 def servo_movment(c1, c2, arduino):
     # move up
     if c1[1] < c2[1]:
-        arduino.write(bytes('up', 'utf-8'))
+        arduino.write(bytes('2', 'utf-8'))
         # turn motor up
         ... 
 
     # move down
     if c1[1] > c2[1]:
-        arduino.write(bytes('down', 'utf-8'))
+        arduino.write(bytes('-2', 'utf-8'))
         # turn motor down
         ...
 
