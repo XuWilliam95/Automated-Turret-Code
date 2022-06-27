@@ -76,7 +76,7 @@ def torso_coords(results):
                         (results.pose_landmarks.landmark[23].x + results.pose_landmarks.landmark[24].x)/2)/2
     torso_center_y = ((results.pose_landmarks.landmark[11].y + results.pose_landmarks.landmark[23].y)/2 + 
                         (results.pose_landmarks.landmark[24].y + results.pose_landmarks.landmark[12].y)/2)/2
-    print ("centered torso x cord: ", torso_center_x, "\ncentered torso y cord: ", torso_center_y)
+    # print ("centered torso x cord: ", torso_center_x, "\ncentered torso y cord: ", torso_center_y)
     return torso_center_x, torso_center_y
 
 def draw_pose(results, image, mp_drawing, mp_pose, mp_drawing_styles):
@@ -110,16 +110,19 @@ def servo_movment(c1, c2, arduino):
 
     # move down
     if c1[1] > c2[1]:
+        arduino.write(bytes('down', 'utf-8'))
         # turn motor down
         ...
 
     # move left
     if c1[0] > c2[0]:
+        arduino.write(bytes('left', 'utf-8'))
         # turn motor counterclockwise
         ... 
 
     # move right
     if c1[0] < c2[0]:
+        arduino.write(bytes('right', 'utf-8'))
         # turn motor clockwise
         ... 
     ...

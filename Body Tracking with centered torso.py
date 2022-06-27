@@ -39,7 +39,7 @@ def main():
                 cv2.circle(image, (c1[0], c1[1]), c1[2], (225, 203, 30), 2)
                 c2 = tf.tracking(torso_coords, torso_bounds1, screen_bounds, image)
                 tf.circle_shoot(c1, c2, image, arduino, mode='edge')
-                #tf.servo_movment(c2)
+                # tf.servo_movment(c2)
                 # torso_shoot(torso_center_x, torso_center_y, [0.4, 0.6], [0.35, 0.7], image, arduino)
 
             cv2.imshow('window', image)
