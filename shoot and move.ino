@@ -1,16 +1,19 @@
 #include <Servo.h>
 
-Servo myservo;  // create servo object to control a servo
+Servo servo_hor;
+Servo servo_vert;// create servo object to control a servo
 // twelve servo objects can be created on most boards
 
-int pos = 90;    // variable to store the servo position
+int pos_hor = 90;
+int pos_vert = 90;// variable to store the servo position
 int d;
 int x;
 
 void setup() {
   Serial.begin(115200);
   Serial.setTimeout(1);
-  myservo.attach(9);
+  servo_hor.attach(9);
+  servo_vert.attach(7);
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
@@ -18,15 +21,26 @@ void loop() {
   while (!Serial.available());
   x = Serial.readString().toInt();
   d = Serial.readString().toInt();
-  myservo.write(pos);
+  servo_hor.write(pos_hor);
+  servo_vert.write(pos_vert);
   
   if (d == 2) {
-    pos += 1;
-    myservo.write(pos);
+    pos_vert += 3;
+    servo_vert.write(pos_vert);
   }
   if (d == -2) {
-    pos -= 1;
-    myservo.write(pos);
+    pos_vert -= 3;
+    servo_vert.write(pos_vert);
+  }
+  
+  if (d == 3) {
+    pos_hor += 3;
+    servo_hor.write(pos_hor);
+  }
+  
+  if (d == -3) {
+    pos_hor -= 3;
+    servo_hor.write(pos_hor);
   }
 
   if (x == 1){
