@@ -3,8 +3,8 @@ Automated Laser Turret
 The idea is an inexpensive, flexible robotic system which would automatically target people and shine a laser at their center of mass. 
 
 Design goals:
-Small, inexpensive two-servo design.
-Utilizing as many common, off-the-shelf components to allow for easy repair/replacement of parts.
+Small, inexpensive two-servo design. \n
+Utilizing as many common, off-the-shelf components to allow for easy repair/replacement of parts.\n
 Arduino Uno or compatible microcontroller board
 Serial communication between microcontroller board and PC
 One 5V laser diode to indicate firing path
