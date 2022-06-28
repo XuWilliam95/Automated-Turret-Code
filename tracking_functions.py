@@ -116,13 +116,13 @@ def servo_movment(c1, c2, arduino):
 
     # move left
     if c1[0] > c2[0]:
-        arduino.write(bytes('left', 'utf-8'))
+        arduino.write(bytes('4', 'utf-8'))
         # turn motor counterclockwise
         ... 
 
     # move right
     if c1[0] < c2[0]:
-        arduino.write(bytes('right', 'utf-8'))
+        arduino.write(bytes('-4', 'utf-8'))
         # turn motor clockwise
         ... 
     ...
