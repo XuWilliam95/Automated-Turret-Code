@@ -1,5 +1,5 @@
 {
     "board": "arduino:avr:uno",
     "port": "COM4",
-    "sketch": "shoot.ino"
+    "sketch": "shoot_and_move.ino"
 }
