@@ -8,6 +8,8 @@ int pos_hor = 90;
 int pos_vert = 90;// variable to store the servo position
 int d;
 int x;
+int dx = 3;
+int dy = 3;
 
 void setup() {
   Serial.begin(9600);
@@ -25,21 +27,21 @@ void loop() {
   servo_vert.write(pos_vert);
   
   if (d == 2) {
-    pos_vert += 3;
+    pos_vert += dy;
     servo_vert.write(pos_vert);
   }
   if (d == -2) {
-    pos_vert -= 3;
+    pos_vert -= dy;
     servo_vert.write(pos_vert);
   }
   
   if (d == 3) {
-    pos_hor += 3;
+    pos_hor += dx;
     servo_hor.write(pos_hor);
   }
   
   if (d == -3) {
-    pos_hor -= 3;
+    pos_hor -= dx;
     servo_hor.write(pos_hor);
   }
 
