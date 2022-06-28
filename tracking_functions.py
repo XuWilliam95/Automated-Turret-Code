@@ -14,7 +14,7 @@ def find_arduino():
     arduino_found = False
     for p in ports:
         if 'Arduino' in p.manufacturer:
-            arduino = serial.Serial(port=p.device, baudrate=115200, timeout=.1)
+            arduino = serial.Serial(port=p.device, baudrate=9600, timeout=.1)
             print (p.device)
             arduino_found = True
 
