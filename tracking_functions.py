@@ -62,7 +62,7 @@ def distance(c1: list, c2: list):
 
 # c = [x, y, r] 
 # if the center of the tracking circle is in the target shoot
-def overlap(c1: list, c2: list, mode: str):
+def overlap(c1: list, c2: list, mode: str) -> bool:
     # center of the smaller circle is in the larger one
     if mode == 'center':
         return distance(c1, c2) < max(c1[2], c2[2])
@@ -102,27 +102,34 @@ def tracking(torso_coords: list, torso_bounds: list, screen_bounds: list, image,
     return [pixel_coords[0], pixel_coords[1], radius]
 
 def servo_movment(c1, c2, arduino):
+    if overlap(c1, c2, 'edge'):
+        return
+
     # move up
-    if c1[1] < c2[1]:
+    if c1[1] > c2[1]:
         arduino.write(bytes('2', 'utf-8'))
+        print('up')
         # turn motor up
         ... 
 
     # move down
-    if c1[1] > c2[1]:
+    if c1[1] < c2[1]:
         arduino.write(bytes('-2', 'utf-8'))
+        print('down')
         # turn motor down
         ...
 
-    # move left
+    # move right (flipped view)
     if c1[0] > c2[0]:
         arduino.write(bytes('4', 'utf-8'))
+        print('right')
         # turn motor counterclockwise
         ... 
 
-    # move right
+    # move left
     if c1[0] < c2[0]:
         arduino.write(bytes('-4', 'utf-8'))
+        print('left')
         # turn motor clockwise
         ... 
     ...
