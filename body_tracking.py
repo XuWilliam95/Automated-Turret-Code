@@ -33,7 +33,6 @@ def main():
                 
                 torso_coords = tf.torso_coords(results)
                 upperchest_coords = tf.upperchest_coords(results)
-                torso_bounds1 = [-0.5, 1.5, -0.5, 1.5] # upper chest (Note: Heavily Biased)
                 torso_bounds2 = [0, 1, 0, 1] # center torso (Note: Unbiased)
                 screen_bounds = [0, win_width, 0, win_height]
                 # Parameters (image, center_coords, radius, color, thickness) # Note: Color is bgr
