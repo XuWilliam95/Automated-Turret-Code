@@ -70,7 +70,7 @@ def overlap(c1: list, c2: list, mode: str) -> bool:
     elif mode == 'edge':
         return distance(c1, c2) < (c1[2] + c2[2])
 
-
+# reference full body landmarks png 
 def torso_coords(results):
     torso_center_x = ((results.pose_landmarks.landmark[11].x + results.pose_landmarks.landmark[12].x)/2 + 
                       (results.pose_landmarks.landmark[23].x + results.pose_landmarks.landmark[24].x)/2)/2
@@ -83,6 +83,7 @@ def upperchest_coords(results):
     upperchest_x = (results.pose_landmarks.landmark[11].x + results.pose_landmarks.landmark[12].x)/2
     upperchest_y = (results.pose_landmarks.landmark[11].y + results.pose_landmarks.landmark[12].y)/2
     return upperchest_x, upperchest_y
+
 def draw_pose(results, image, mp_drawing, mp_pose, mp_drawing_styles):
     mp_drawing.draw_landmarks(
                 image,
