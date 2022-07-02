@@ -101,6 +101,11 @@ def tracking(torso_coords: list, torso_bounds: list, screen_bounds: list, image,
     cv2.circle(image, pixel_coords, radius, color, thickness)
     return [pixel_coords[0], pixel_coords[1], radius]
 
+def mouse_coords(event, x, y, flags, param):
+    if event == cv2.EVENT_MOUSEMOVE:
+        print(f'({x}, {y})')
+        return (x, y)
+
 def servo_movment(c1, c2, arduino):
     if overlap(c1, c2, 'edge'):
         return
