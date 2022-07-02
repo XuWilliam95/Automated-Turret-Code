@@ -73,12 +73,16 @@ def overlap(c1: list, c2: list, mode: str) -> bool:
 
 def torso_coords(results):
     torso_center_x = ((results.pose_landmarks.landmark[11].x + results.pose_landmarks.landmark[12].x)/2 + 
-                        (results.pose_landmarks.landmark[23].x + results.pose_landmarks.landmark[24].x)/2)/2
+                      (results.pose_landmarks.landmark[23].x + results.pose_landmarks.landmark[24].x)/2)/2
     torso_center_y = ((results.pose_landmarks.landmark[11].y + results.pose_landmarks.landmark[23].y)/2 + 
-                        (results.pose_landmarks.landmark[24].y + results.pose_landmarks.landmark[12].y)/2)/2
+                      (results.pose_landmarks.landmark[24].y + results.pose_landmarks.landmark[12].y)/2)/2
     # print ("centered torso x cord: ", torso_center_x, "\ncentered torso y cord: ", torso_center_y)
     return torso_center_x, torso_center_y
 
+def upperchest_coords(results):
+    upperchest_x = (results.pose_landmarks.landmark[11].x + results.pose_landmarks.landmark[12].x)/2
+    upperchest_y = (results.pose_landmarks.landmark[11].y + results.pose_landmarks.landmark[12].y)/2
+    return upperchest_x, upperchest_y
 def draw_pose(results, image, mp_drawing, mp_pose, mp_drawing_styles):
     mp_drawing.draw_landmarks(
                 image,
