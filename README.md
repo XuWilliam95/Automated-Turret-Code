@@ -19,5 +19,4 @@ The servos, along with the laser diode are connected to an Arduino Uno and the A
 -  [ ] Incorporate PID controllers to allow for smoother tracking
 -  [ ] Create wooden/plastic frame
 -  [ ] Replace laser diode with electric airsoft/NERF gun
--  [ ] Utilize 3D printed fittings to replace the need to use metal bars and 
- 
+-  [ ] Utilize 3D printed fittings to replace the need to use metal bars
