@@ -15,9 +15,9 @@ The current platform is built around a set of servos. The two servos each have a
 The servos, along with the laser diode are connected to an Arduino Uno and the Arduino is attached to a PC setup for serial communication via Pyserial (constant back-and-forth communication between PC and Arduino). On the PC is the main code for the turret, which is written in Python 3. As stated above, OpenCV is used for computer vision  while MediaPipe is used for body recognition. 
 
 ### Future Goals:
--  Replace servo motors with stepper motors 
--  Incorporate PID controllers to allow for smoother tracking
--  Create wooden/plastic frame
--  Replace laser diode with electric airsoft/NERF gun
--  Utilize 3D printed fittings to replace the need to use metal bars and 
+- [ ] Replace servo motors with stepper motors 
+-  [ ] Incorporate PID controllers to allow for smoother tracking
+-  [ ] Create wooden/plastic frame
+-  [ ] Replace laser diode with electric airsoft/NERF gun
+-  [ ] Utilize 3D printed fittings to replace the need to use metal bars and 
  
