@@ -1,7 +1,6 @@
 import cv2
 import mediapipe as mp
 import tracking_functions as tf
-import cv2 
 
 def main():
     cv2.namedWindow('window')
