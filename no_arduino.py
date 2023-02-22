@@ -10,7 +10,6 @@ def main():
     # finds dimensions of the window
     win_width, win_height = frame.shape[1], frame.shape[0]
     c1 = [win_width//2, win_height//2, 40]
-    # arduino = tf.find_arduino()
 
     mp_drawing = mp.solutions.drawing_utils
     mp_drawing_styles = mp.solutions.drawing_styles
@@ -37,9 +36,7 @@ def main():
                 # Parameters (image, center_coords, radius, color, thickness) # Note: Color is bgr
                 cv2.circle(image, (c1[0], c1[1]), c1[2], (225, 203, 30), 2)
                 c2 = tf.tracking(upperchest_coords, torso_bounds2, screen_bounds, image)
-                # tf.circle_shoot(c1, c2, image, arduino, mode='edge')
-                # tf.servo_movment(c1, c2, arduino)
-                # torso_shoot(torso_center_x, torso_center_y, [0.4, 0.6], [0.35, 0.7], image, arduino)
+                tf.circle_shoot_na(c1, c2, image, mode='edge')
 
             cv2.imshow('window', image)
             if cv2.waitKey(1) == ord ('d'):

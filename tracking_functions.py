@@ -47,6 +47,12 @@ def circle_shoot(c1, c2, image, arduino, mode):
     else:
         arduino.write(bytes('0', 'utf-8'))
 
+def circle_shoot_na(c1, c2, image, mode):
+    if overlap(c1, c2, mode):
+        # shows fire on screen when target is with the defined tolerance
+        cv2.putText(image, "In Range", (10,70), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,255), 3)
+
+
 def manual_shoot(arduino, trigger):
     if cv2.waitKey(1) == ord(trigger):
         arduino.write(bytes('1', 'utf-8'))
